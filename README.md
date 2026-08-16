@@ -10,9 +10,9 @@ Traditional assessment mainly relies on manual visual examination, which can be 
 
 To address these challenges, I developed a **multi-stage deep learning pipeline** that processes a dental image through three main stages:
 
-◆ **YOLOv8s-seg** for individual tooth segmentation
-◆ **ResNet50** for NCCL vs Normal classification
-◆ **YOLOv5** for NCCL lesion localization
+- **YOLOv8s-seg** for individual tooth segmentation
+- **ResNet50** for NCCL vs Normal classification
+- **YOLOv5** for NCCL lesion localization
 
 A **Flask-based web application** was also developed to visualize the model predictions.
 
@@ -26,11 +26,11 @@ The overall workflow is:
 
 Automated analysis of dental images presents several challenges:
 
-◆ Manual identification can be time-consuming and subjective.
-◆ Small or early-stage lesions can be difficult to identify visually.
-◆ Dental images can vary in quality and appearance.
-◆ Precise lesion localization is challenging.
-◆ Background regions in complete dental images can interfere with classification.
+- Manual identification can be time-consuming and subjective.
+- Small or early-stage lesions can be difficult to identify visually.
+- Dental images can vary in quality and appearance.
+- Precise lesion localization is challenging.
+- Background regions in complete dental images can interfere with classification.
 
 The project therefore focuses on separating these tasks into individual stages rather than attempting to perform the complete analysis using a single model.
 
@@ -38,11 +38,11 @@ The project therefore focuses on separating these tasks into individual stages r
 
 ## Project Objectives
 
-◆ Prepare and annotate dental images containing NCCL and normal tooth conditions.
-◆ Segment individual teeth from dental images using YOLOv8s-seg.
-◆ Classify segmented teeth as **NCCL** or **Normal** using ResNet50.
-◆ Localize NCCL lesion regions using YOLOv5.
-◆ Develop a Flask-based interface to visualize the predictions.
+- Prepare and annotate dental images containing NCCL and normal tooth conditions.
+- Segment individual teeth from dental images using YOLOv8s-seg.
+- Classify segmented teeth as **NCCL** or **Normal** using ResNet50.
+- Localize NCCL lesion regions using YOLOv5.
+- Develop a Flask-based interface to visualize the predictions.
 
 ---
 
@@ -94,8 +94,8 @@ In simple terms:
 
 Approximately **270 dental images** were collected for the project, including images containing NCCL and normal tooth conditions.
 
-◆ 270 original dental images
-◆ Dataset preparation and annotation performed using **Roboflow**
+- 270 original dental images
+- Dataset preparation and annotation performed using **Roboflow**
 
 The original images were processed to generate individual tooth regions for the classification and lesion-localization stages.
 
@@ -107,21 +107,21 @@ Individual teeth were annotated using polygon-based instance segmentation annota
 
 The segmented tooth images were then categorized into two classes:
 
-◆ **NCCL**
-◆ **Normal**
+- **NCCL**
+- **Normal**
 
 A total of **873 segmented tooth images** were generated for classification dataset preparation.
 
 After augmentation, the classification dataset contained:
 
-◆ **2,233 training images**
-◆ **800 testing images**, with 400 NCCL and 400 Normal images
+- **2,233 training images**
+- **800 testing images**, with 400 NCCL and 400 Normal images
 
 For lesion localization, polygon annotations were created around the NCCL regions. A total of **493 annotated tooth images** were prepared, consisting of:
 
-◆ 345 training images
-◆ 49 validation images
-◆ 99 testing images
+- 345 training images
+- 49 validation images
+- 99 testing images
 
 Data augmentation was also applied to increase image diversity and improve model robustness.
 
@@ -147,8 +147,8 @@ The segmented tooth images were passed to a ResNet50 model for binary classifica
 
 The model predicts whether the tooth belongs to:
 
-◆ **NCCL**
-◆ **Normal**
+- **NCCL**
+- **Normal**
 
 The use of segmented tooth regions allows the classifier to focus on the tooth morphology and potential lesion characteristics rather than the surrounding image.
 
@@ -156,10 +156,10 @@ The model achieved approximately **90% classification accuracy** on the test set
 
 From the 800 test images:
 
-◆ 360 NCCL images were correctly classified.
-◆ 360 Normal images were correctly classified.
-◆ 40 NCCL images were classified as Normal.
-◆ 40 Normal images were classified as NCCL.
+- 360 NCCL images were correctly classified.
+- 360 Normal images were correctly classified.
+- 40 NCCL images were classified as Normal.
+- 40 Normal images were classified as NCCL.
 
 ---
 
@@ -183,12 +183,12 @@ A **Flask-based web application** was developed to bring the trained models toge
 
 The application allows a user to:
 
-◆ Upload a dental image
-◆ Process the image through the trained models
-◆ Identify individual teeth
-◆ Predict NCCL or Normal
-◆ Localize suspected lesion regions
-◆ Display prediction confidence and visual results
+- Upload a dental image
+- Process the image through the trained models
+- Identify individual teeth
+- Predict NCCL or Normal
+- Localize suspected lesion regions
+- Display prediction confidence and visual results
 
 This provides a simple interface for demonstrating the outputs of the complete AI pipeline.
 
@@ -210,28 +210,28 @@ The results demonstrate the feasibility of combining segmentation, classificatio
 
 ## Technologies Used
 
-◆ **Python**
-◆ **YOLOv8 / Ultralytics**
-◆ **YOLOv5**
-◆ **ResNet50**
-◆ **TensorFlow / Keras**
-◆ **PyTorch**
-◆ **OpenCV**
-◆ **Roboflow**
-◆ **Scikit-learn**
-◆ **Matplotlib**
-◆ **Flask**
+- **Python**
+- **YOLOv8 / Ultralytics**
+- **YOLOv5**
+- **ResNet50**
+- **TensorFlow / Keras**
+- **PyTorch**
+- **OpenCV**
+- **Roboflow**
+- **Scikit-learn**
+- **Matplotlib**
+- **Flask**
 
 ---
 
 ## Limitations
 
-◆ The dataset size was relatively limited.
-◆ Dental images showed variations in quality and appearance.
-◆ Model performance depends on annotation quality.
-◆ Errors during tooth segmentation can affect downstream classification.
-◆ GPU resources are required for efficient model training.
-◆ The reported results demonstrate technical feasibility and should not be considered clinical validation.
+- The dataset size was relatively limited.
+- Dental images showed variations in quality and appearance.
+- Model performance depends on annotation quality.
+- Errors during tooth segmentation can affect downstream classification.
+- GPU resources are required for efficient model training.
+- The reported results demonstrate technical feasibility and should not be considered clinical validation.
 
 This project is therefore intended as a **research and prototype system**, not as a replacement for professional dental diagnosis.
 
@@ -239,13 +239,13 @@ This project is therefore intended as a **research and prototype system**, not a
 
 ## Future Work
 
-◆ Increase the dataset size using larger clinical datasets.
-◆ Improve tooth and lesion segmentation to reduce error propagation between stages.
-◆ Improve real-time diagnostic performance.
-◆ Explore mobile or cloud-based deployment.
-◆ Extend the framework to additional dental conditions.
-◆ Incorporate explainable AI techniques.
-◆ Evaluate the models on larger and more diverse external datasets.
+- Increase the dataset size using larger clinical datasets.
+- Improve tooth and lesion segmentation to reduce error propagation between stages.
+- Improve real-time diagnostic performance.
+- Explore mobile or cloud-based deployment.
+- Extend the framework to additional dental conditions.
+- Incorporate explainable AI techniques.
+- Evaluate the models on larger and more diverse external datasets.
 
 ---
 
